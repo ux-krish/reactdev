@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PageLayout from "./components/PageLayout";
 import Navbar from "./components/Navbar";
 import ProductGallery from "./components/ProductGallery";
@@ -39,18 +39,13 @@ const App = () => {
   };
 
   const handleRemoveProduct = (productId) => {
-    // Find the product in the cart
     const removedProduct = cart.find((product) => product.id === productId);
     
-    // Update the products array by adding the removed product back
     setProducts((prevProducts) => [...prevProducts, removedProduct]);
-
-    // Update the cart by removing the product
     setCart((prevCart) => prevCart.filter((product) => product.id !== productId));
   };
 
   const handleAddNewItem = (newItem) => {
-    // Assuming newItem is an object with properties like id, name, price, description
     setProducts((prevProducts) => [...prevProducts, newItem]);
   };
 

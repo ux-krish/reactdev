@@ -8,25 +8,18 @@ const AddProductModal = ({ isOpen, onClose, onAddNewItem }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate form fields, you can add more validation as needed
     if (!itemName || !itemPrice || !itemDescription) {
-      // Handle validation error
       return;
     }
-
-    // Call the parent component function to add the new item
     onAddNewItem({
       name: itemName,
       price: parseFloat(itemPrice),
       description: itemDescription,
     });
-
-    // Clear form fields
     setItemName("");
     setItemPrice("");
     setItemDescription("");
 
-    // Close the modal
     onClose();
   };
 
