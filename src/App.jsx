@@ -28,9 +28,9 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState(initialProducts);
 
-  useEffect(()=>{
-    console.log(JSON.stringify(products,null,2));
-  },[products])
+  useEffect(() => {
+    console.log(JSON.stringify(products, null, 2));
+  }, [products])
 
   const handleAddProduct = (productId) => {
     setProducts(prev => {
@@ -47,7 +47,8 @@ const App = () => {
     setProducts(prev => {
       return prev.map(product => {
         if (product.id === productId) {
-          return { ...product, isCart: false };
+          let { isCart, ...rest } = product
+          return { ...rest };
         }
         return product;
       });
