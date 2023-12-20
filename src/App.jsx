@@ -27,11 +27,10 @@ const initialProducts = [
   },
 ];
 const App = () => {
-  const [cart, setCart] = useState([]);
   const [products, setProducts] = useState(initialProducts);
 
   useEffect(() => {
-    console.log(JSON.stringify(products, null, 2));
+    //console.log(JSON.stringify(products, null, 2));
   }, [products])
 
   const handleAddProduct = (productId) => {
@@ -61,9 +60,10 @@ const App = () => {
     setProducts((prevProducts) => [...prevProducts, newItem]);
   };
 
+
   return (
     <PageLayout>
-      <Navbar handleAddNewItem={handleAddNewItem} />
+      <Navbar handleAddNewItem={handleAddNewItem}  />
       <div className="w-full gap-4 lg:flex items-start">
         <ProductGallery products={products} handleAddProduct={handleAddProduct} />
         <Cart products={products} handleRemoveProduct={handleRemoveProduct} />

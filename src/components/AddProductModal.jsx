@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 
 const AddProductModal = ({ isOpen, onClose, onAddNewItem }) => {
-  const [itemName, setItemName] = useState("");
-  const [itemPrice, setItemPrice] = useState("");
-  const [itemDescription, setItemDescription] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productDescription, setProductDescription] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!itemName || !itemPrice || !itemDescription) {
+    if (!productName || !productPrice || !productDescription) {
       return;
     }
     onAddNewItem({
-      name: itemName,
-      price: parseFloat(itemPrice),
-      description: itemDescription,
+      name: productName,
+      price: parseFloat(productPrice),
+      description: productDescription,
     });
-    setItemName("");
-    setItemPrice("");
-    setItemDescription("");
+    setProductName("");
+    setProductPrice("");
+    setProductDescription("");
 
     onClose();
   };
@@ -39,8 +39,8 @@ const AddProductModal = ({ isOpen, onClose, onAddNewItem }) => {
               </label>
               <input
                 type="text"
-                value={itemName}
-                onChange={(e) => setItemName(e.target.value)}
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
                 className="w-full border rounded px-3 py-2"
                 required
               />
@@ -51,8 +51,8 @@ const AddProductModal = ({ isOpen, onClose, onAddNewItem }) => {
               </label>
               <input
                 type="number"
-                value={itemPrice}
-                onChange={(e) => setItemPrice(e.target.value)}
+                value={productPrice}
+                onChange={(e) => setProductPrice(e.target.value)}
                 className="w-full border rounded px-3 py-2"
                 required
               />
@@ -62,8 +62,8 @@ const AddProductModal = ({ isOpen, onClose, onAddNewItem }) => {
                 Description
               </label>
               <textarea
-                value={itemDescription}
-                onChange={(e) => setItemDescription(e.target.value)}
+                value={productDescription}
+                onChange={(e) => setProductDescription(e.target.value)}
                 className="w-full border rounded px-3 py-2"
                 required
               />
