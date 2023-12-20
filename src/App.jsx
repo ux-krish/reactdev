@@ -3,22 +3,24 @@ import PageLayout from "./components/PageLayout";
 import Navbar from "./components/Navbar";
 import ProductGallery from "./components/ProductGallery";
 import Cart from "./components/Cart";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const initialProducts = [
   {
-    id: 1,
+    id: uuidv4(),
     name: 'Product 1',
     price: 20,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
   {
-    id: 2,
+    id: uuidv4(),
     name: 'Product 2',
     price: 30,
     description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
-    id: 3,
+    id: uuidv4(),
     name: 'Product 3',
     price: 36,
     description: 'tempor incididunt ut labore et dolore magna.',

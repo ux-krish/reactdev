@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-
+import { v4 as uuidv4 } from 'uuid';
 export default function Navbar({ handleAddNewItem }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productName, setProductName] = useState('');
@@ -34,6 +34,7 @@ export default function Navbar({ handleAddNewItem }) {
   const handleSubmit = () => {
     if (productName.trim() !== '' && price.trim() !== '') {
       const newItem = {
+        id:uuidv4(),
         name: productName,
         price: parseFloat(price),
         description,
