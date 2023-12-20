@@ -7,7 +7,7 @@ export default function Cart({ products = [], handleRemoveProduct }) {
 
   return (
     <div
-      className={`bg-slate-700 p-5 mt-4 lg:mt-0 w-[350px] shadow-2xl z-10 fixed top-0 bottom-0 transition-all ease-in-out delay-200 ${
+      className={`bg-slate-700 p-5 w-[350px] shadow-2xl z-10 fixed top-0 bottom-0 transition-all ease-in-out delay-200 ${
         hasProductsInCart ? "right-0" : "-right-[350px]"
       }`}
     >

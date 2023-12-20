@@ -3,7 +3,7 @@ import React from 'react'
 export default function ProductGallery({ products = [], handleAddProduct }) {
   return (
 
-    <div className='gap-4 grid grid-cols-3 w-full'>
+    <div className='gap-4 grid grid-cols-2 md:grid-cols-3 w-full'>
       {products.filter((prod) => !prod.hasOwnProperty('isCart') || (prod.hasOwnProperty('isCart') &&!prod?.isCart)).map((product, index) => {
         const { id, name, price, description } = product;
         return (

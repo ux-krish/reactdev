@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { v4 as uuidv4 } from "uuid";
+import { FaPowerOff } from "react-icons/fa6";
 export default function Navbar({
   handleAddNewItem
 }) {
@@ -54,24 +55,34 @@ export default function Navbar({
     console.log(value);
   }
 
+  const [isLoggedIn, setLoggedIn] = useState(true);
+
 
   return (
     <>
-      <div className="flex items-center justify-between bg-slate-700 p-3 rounded-md mt-4 mb-8 shadow-lg">
-        <h1 className="text-2xl font-bold text-slate-300 px-4">Product List</h1>
+      <div className="flex flex-wrap items-center justify-between bg-slate-700 p-3 rounded-md mt-4 mb-8 shadow-lg">
+        <h1 className="text-2xl font-bold text-slate-300 px-4 order-1">Product List</h1>
         <input
           type="text"
           value={search}
           onChange={(e) => handleSearch(e.target.value)}
-          className="h-[38px] text-slate-300 flex-1 outline-none px-4 mx-4 rounded-md bg-slate-600 focus:bg-slate-500"
+          className="h-[38px] text-slate-300 flex-1 outline-none mt-4 sm:mt-0 px-4 sm:mx-4 rounded-md bg-slate-600 focus:bg-slate-500 order-3 sm:order-2"
           placeholder="Search products..."
         />
-        <button
+        {
+          isLoggedIn ? (
+            <button
           onClick={openModal}
-          className="bg-slate-600 py-2 px-6 rounded-md font-bold text-slate-300 hover:bg-slate-950 shadow-lg"
+          className="bg-slate-600 py-2 px-6 rounded-md font-bold text-slate-300 hover:bg-slate-950 shadow-lg order-2 sm:order-3"
         >
           Add Product
         </button>
+          ) : (
+            <FaPowerOff className="w-[35px] h-[35px] rounded-full order-4 mx-2 bg-slate-600 hover:bg-slate-800 cursor-pointer text-slate-300 p-2" />
+          )
+        }
+        
+        
       </div>
 
       <Modal
