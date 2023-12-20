@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageLayout from "./components/PageLayout";
 import Navbar from "./components/Navbar";
 import ProductGallery from "./components/ProductGallery";
@@ -28,21 +28,30 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState(initialProducts);
 
+  useEffect(()=>{
+    console.log(JSON.stringify(products,null,2));
+  },[products])
+
   const handleAddProduct = (productId) => {
-    const selectedProduct = products.find((product) => product.id === productId);
-    const isProductInCart = cart.some((product) => product.id === productId);
-    
-    if (selectedProduct && !isProductInCart) {
-      setCart((prevCart) => [...prevCart, selectedProduct]);
-      setProducts((prevProducts) => prevProducts.filter((product) => product.id !== productId));
-    }
+    setProducts(prev => {
+      return prev.map(product => {
+        if (product.id === productId) {
+          return { ...product, isCart: true };
+        }
+        return product;
+      });
+    })
   };
 
   const handleRemoveProduct = (productId) => {
-    const removedProduct = cart.find((product) => product.id === productId);
-    
-    setProducts((prevProducts) => [...prevProducts, removedProduct]);
-    setCart((prevCart) => prevCart.filter((product) => product.id !== productId));
+    setProducts(prev => {
+      return prev.map(product => {
+        if (product.id === productId) {
+          return { ...product, isCart: false };
+        }
+        return product;
+      });
+    })
   };
 
   const handleAddNewItem = (newItem) => {
@@ -54,7 +63,7 @@ const App = () => {
       <Navbar handleAddNewItem={handleAddNewItem} />
       <div className="w-full gap-4 lg:flex items-start">
         <ProductGallery products={products} handleAddProduct={handleAddProduct} />
-        <Cart cart={cart} handleRemoveProduct={handleRemoveProduct} />
+        <Cart products={products} handleRemoveProduct={handleRemoveProduct} />
       </div>
     </PageLayout>
   );

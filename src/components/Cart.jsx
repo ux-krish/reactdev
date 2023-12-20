@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function Cart({cart, handleRemoveProduct}) {
+export default function Cart({ products = [], handleRemoveProduct }) {
   return (
     <div className=' bg-slate-700 p-5 rounded-md  col-span-1 lg:w-[600px] md:min-h-[80vh] mt-4 lg:mt-0'>
-        <h2 className="text-xl font-bold mb-4 text-white">Shopping Cart</h2>
-        {cart.length > 0 ? (
+      <h2 className="text-xl font-bold mb-4 text-white">Shopping Cart</h2>
+      {/* {cart.length > 0 ? (
             cart.map((cartProduct) => (
             <div key={cartProduct.id} className="text-white mb-4">
                 <div key={cartProduct.id} className="bg-slate-800 shadow-lg p-4 rounded-md flex justify-between items-center">
@@ -16,7 +16,20 @@ export default function Cart({cart, handleRemoveProduct}) {
             ))
         ) : (
             <p className="text-slate-300">No items in the cart!</p>
-        )}
+        )} */}
+      {products.filter((prod) => prod.hasOwnProperty('isCart') && prod?.isCart).map((product, index) => {
+        const { id, name, price, description } = product;
+        return (
+          <div key={index}>
+            <div className="bg-slate-700 shadow-lg p-4 rounded-md grid grid-col-3">
+              <h2 className="text-xl font-bold mb-2 text-slate-300">{name}</h2>
+              <p className="text-slate-300 font-bold ">${price}</p>
+              <button onClick={() => handleRemoveProduct(id)} className='bg-red-900 w-10 h-10 rounded-md font-bold text-slate-300 hover:bg-slate-950 shadow-lg'>X</button>
+            </div>
+          </div>
+
+        )
+      })}
     </div>
   )
 }
