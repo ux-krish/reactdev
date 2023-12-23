@@ -108,7 +108,7 @@ useEffect(() => {
         <ProductGallery products={products} handleAddProduct={handleAddProduct} />
         <Cart products={products} handleRemoveProduct={handleRemoveProduct} />
       </div>
-       <Login />
+       {/* <Login /> */}
     </PageLayout>
   );
 };
