@@ -81,28 +81,23 @@ const App = () => {
 
 
   const [copyProducts, setCopyProducts] = useState(initialProducts);
+  const [searchData, setSearchData] = useState('');
 
-  const filterData = (searchData) => {
-    console.log(`searchData length is ${searchData.length}`);
-    if (searchData.length > 0) {
-      let temp = [...products].filter(product => {
-        if (product.name.toLowerCase().includes(searchData.toLowerCase())) {
-          return { ...product };
-        }
-      })
-      setProducts(temp);
-      // setProducts(prev => {
-      //   return prev.filter(product => {
-      //     if (product.name.toLowerCase().includes(searchData.toLowerCase())) {
-      //       return { ...product };
-      //     }
-      //   });
-      // })
-    } else {
-      setProducts(copyProducts)
-    }
+ const filterData = (searchData) => {
+  setSearchData(searchData);
+};
 
+useEffect(() => {
+  if (searchData.length > 0) {
+    const temp = copyProducts.filter(product =>
+      product.name.toLowerCase().includes(searchData.toLowerCase())
+    );
+    setProducts(temp);
+  } else {
+    setProducts(copyProducts);
   }
+}, [searchData, copyProducts]);
+
   return (
     <PageLayout>
       <Navbar
@@ -113,7 +108,7 @@ const App = () => {
         <ProductGallery products={products} handleAddProduct={handleAddProduct} />
         <Cart products={products} handleRemoveProduct={handleRemoveProduct} />
       </div>
-      {/* <Login /> */}
+       <Login />
     </PageLayout>
   );
 };

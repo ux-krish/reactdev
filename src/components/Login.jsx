@@ -16,7 +16,6 @@ const Login = () => {
               placeholder='Username'
             />
           </div>
-
           <div className="mb-4">
             <input
               type="password"
@@ -25,6 +24,7 @@ const Login = () => {
               className="w-full text-slate-50 px-3 shadow-md shadow-slate-500 bg-slate-500 py-2 border border-slate-400 rounded-md focus:outline-none focus:border-slate-200"
               placeholder='Password'
             />
+            
           </div>
 
           <button
