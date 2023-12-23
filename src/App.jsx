@@ -26,6 +26,24 @@ const initialProducts = [
     price: 80,
     description: 'Mango / Banana / Coconut',
   },
+  {
+    id: uuidv4(),
+    name: 'Cake 1',
+    price: 300,
+    description: '6 inch / 1 Pound',
+  },
+  {
+    id: uuidv4(),
+    name: 'Chocolate 1',
+    price: 100,
+    description: 'Dark / White / Strawberry',
+  },
+  {
+    id: uuidv4(),
+    name: 'Ice Cream 1',
+    price: 80,
+    description: 'Mango / Banana / Coconut',
+  },
 ];
 const App = () => {
   const [products, setProducts] = useState(initialProducts);
@@ -62,9 +80,35 @@ const App = () => {
   };
 
 
+  const [copyProducts, setCopyProducts] = useState(initialProducts);
+
+  const filterData = (searchData) => {
+    console.log(`searchData length is ${searchData.length}`);
+    if (searchData.length > 0) {
+      let temp = [...products].filter(product => {
+        if (product.name.toLowerCase().includes(searchData.toLowerCase())) {
+          return { ...product };
+        }
+      })
+      setProducts(temp);
+      // setProducts(prev => {
+      //   return prev.filter(product => {
+      //     if (product.name.toLowerCase().includes(searchData.toLowerCase())) {
+      //       return { ...product };
+      //     }
+      //   });
+      // })
+    } else {
+      setProducts(copyProducts)
+    }
+
+  }
   return (
     <PageLayout>
-      <Navbar handleAddNewItem={handleAddNewItem}  />
+      <Navbar
+        handleAddNewItem={handleAddNewItem}
+        searchEvent={(searchData) => { filterData(searchData) }}
+      />
       <div className="w-full gap-4 lg:flex items-start">
         <ProductGallery products={products} handleAddProduct={handleAddProduct} />
         <Cart products={products} handleRemoveProduct={handleRemoveProduct} />

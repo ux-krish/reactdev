@@ -3,7 +3,8 @@ import Modal from "react-modal";
 import { v4 as uuidv4 } from "uuid";
 import { FaPowerOff } from "react-icons/fa6";
 export default function Navbar({
-  handleAddNewItem
+  handleAddNewItem,
+  searchEvent
 }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productName, setProductName] = useState("");
@@ -50,10 +51,10 @@ export default function Navbar({
 
 
   const [search, setSearch] = useState('');
-  const handleSearch = (value) => {
-    setSearch(value);
-    console.log(value);
-  }
+  // const handleSearch = (value) => {
+  //   setSearch(value);
+  //   console.log(value);
+  // }
 
   const [isLoggedIn, setLoggedIn] = useState(true);
 
@@ -65,7 +66,7 @@ export default function Navbar({
         <input
           type="text"
           value={search}
-          onChange={(e) => handleSearch(e.target.value)}
+          onChange={(e) => {searchEvent(e.target.value);setSearch(e.target.value)}}
           className="h-[38px] text-slate-300 flex-1 outline-none mt-4 sm:mt-0 px-4 sm:mx-4 rounded-md bg-slate-600 focus:bg-slate-500 order-3 sm:order-2"
           placeholder="Search products..."
         />
